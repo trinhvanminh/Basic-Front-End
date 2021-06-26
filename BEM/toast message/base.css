@@ -1,0 +1,13 @@
+:root {
+    --warning-color: #f0a92e;
+    --sucess-color: #21a67a;
+    --info-color: #007bc2;
+    --danger-color: #ff623d;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
