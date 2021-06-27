@@ -6,6 +6,7 @@
 
 * {
     box-sizing: inherit;
+    text-decoration: none;
 }
 
 html {
@@ -30,3 +31,18 @@ html {
     flex-wrap: wrap;
 }
 
+.opacity-hover:hover {
+    opacity: 0.6;
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+    
+}
