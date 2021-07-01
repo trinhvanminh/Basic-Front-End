@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul { 
+            display: none;
+        }
+        input:focus ~ ul{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- PreventDefault -->
+    <h1>PreventDefault</h1>
+    <input>
+    <ul>
+        <li>html</li>
+        <li>js</li>
+        <li>python</li>
+    </ul>
+    <h1>StopPropagation</h1>
+    <!-- StopPropagation -->
+    <div>
+        DIV
+        <button>Click me!!</button>
+    </div>
+    <script src="./PreventDefault and StopPropagation.js"></script>
+</body>
+</html>

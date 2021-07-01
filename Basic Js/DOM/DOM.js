@@ -44,3 +44,9 @@ console.log({
 
 
 console.log([headingNode])
+
+
+var ele = document.links; //return all <a> tag </a>
+
+//khoogn dduoc dung nua
+var ele2 = document.anchors; //return all <a name='havename'> tag </a> have a name
