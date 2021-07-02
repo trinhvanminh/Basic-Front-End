@@ -1,0 +1,14 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Kiến thức cho người mới bắt đầu",
+      "description": "Tham gia nhóm Học lập trình tại F8 trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️\nCác bạn subscribe kênh Youtube F8 Official để nhận thông báo khi có các bài học mới nhé ❤️"
+    },
+    {
+      "name": "Kiến thức cho người mới bắt đầu",
+      "description": "Tham gia nhóm Học lập trình tại F8 trên Facebook để cùng nhau trao đổi trong quá trình học tập ❤️ Các bạn subscribe kênh Youtube F8 Official để nhận thông báo khi có các bài học mới nhé ❤️",
+      "id": 2
+    }
+  ]
+}

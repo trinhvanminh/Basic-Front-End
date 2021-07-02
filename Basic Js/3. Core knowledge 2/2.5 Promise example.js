@@ -71,7 +71,7 @@ getComments()
                         return {
                             users: users, 
                             comments: comments
-                        };
+         };
                     });
     })
     //get user.name from comment.user_id -> return user.name + comment.content --> render html
@@ -86,4 +86,3 @@ getComments()
         })
         commentBlock.innerHTML = html;
     })
-
