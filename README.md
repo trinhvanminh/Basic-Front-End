@@ -5,7 +5,10 @@
 - BEM (Block - Element - Modifier)
 - Toast message
 - Shopee
-- Basic Js > completed DOM events, Event listener
+- Basic Js 
+  - Promise
+  - Fetch (CRUD)
+  - API Server,  JSON server, (JSON stand for JavaScript Object Notation)
 
-## Update: 07/02/2021
+## Update: 03/07/2021
 
