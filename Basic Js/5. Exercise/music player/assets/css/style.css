@@ -108,6 +108,11 @@ header h2 {
   background-color: var(--primary-color);
 }
 
+.control .btn-prev:active,
+.control .btn-next:active {
+  color: var(--primary-color);
+}
+
 .progress {
   width: 100%;
   -webkit-appearance: none;

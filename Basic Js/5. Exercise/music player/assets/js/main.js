@@ -7,7 +7,7 @@
  * 6. Random
  * 7. Next/repeat when the song ended
  * 8. Active song
- * 9. Sroll active song into view
+ * 9. Scroll active song into view
  * 10. Play song when click
  */
 
@@ -20,11 +20,17 @@ const cdThumb = $('.cd-thumb')
 const playBtn = $('.btn-toggle-play')
 const progress = $('#progress')
 const audio = $('#audio')
-
+const repeatBtn = $('.btn-repeat')
+const prevBtn = $('.btn-prev')
+const nextBtn = $('.btn-next')
+const randomBtn = $('.btn-random')
+const playlist = $('.playlist')
 
 const app = {
     currentIndex: 0,
     isPlaying: false,
+    isRepeat: false,
+    isRandom: false,
     songs: [
         {
             name: 'Nevada',
@@ -35,7 +41,7 @@ const app = {
         {
             name: 'Light It Up',
             singer: 'RobinHustin x Tobimorrow',
-            path: './assets/music/LightItUp-RobinHustinTobimo.mp3',
+            path: './assets/music/LightItUp-RobinHustinTobimorrow.mp3',
             image: './assets/img/LightItUp-RobinHustinTobimorrow.jpg'
         },
         {
@@ -94,7 +100,7 @@ const app = {
         },
     ],
     render: function() {
-        const htmls = this.songs.map(song => {
+        const htmls = this.songs.map((song) => {
             return `
                 <div class="song">
                     <img class="thumb" src="${song.image}"/>
@@ -108,21 +114,38 @@ const app = {
                 </div>
             `
         })
-        $('.playlist').innerHTML = htmls.join('')
+        playlist.innerHTML = htmls.join('')
+        playlist.children[0].classList.add('active')
     },
     defineProperties: function() {
         Object.defineProperty(this, 'currentSong', {
             get: function() {
                 return this.songs[this.currentIndex]
             }
+        }),
+        Object.defineProperty(this, 'currentSongElement', {
+            get: function() {
+                return playlist.children[this.currentIndex]
+            }
         })
     },
     handleEvents: function() {
         _app = this
+        
+        // ------------- Rotate animate cd ---------------------
+
+        //https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
+        cdAnimation = cdThumb.animate([{transform: 'rotate(360deg)' },  ], 
+            {
+            // timing options
+            duration: 10000, // complete a round by 10 seconds
+            iterations: Infinity
+            });
+        cdAnimation.pause();
 
         // --------------handle zoom in/out cd------------------
-        // cd.offsetWidth = 200px for the first time
-        const cdWidth = cd.offsetWidth
+        
+        const cdWidth = cd.offsetWidth // cd.offsetWidth = 200px for the first time
         document.onscroll = function() {
             const scrollTop = document.documentElement.scrollTop || window.scrollY
 
@@ -138,6 +161,7 @@ const app = {
         }
 
         // --------------handle play/pause audio------------------
+
         playBtn.onclick = function() {
             if(_app.isPlaying) 
                 audio.pause();
@@ -146,12 +170,16 @@ const app = {
         }
 
         audio.onplay = function() {
+            // toggle btn play/pause
             player.classList.add('playing')
+            // play animation cd thumb
+            cdAnimation.play();
             _app.isPlaying = true
         }
 
         audio.onpause = function() {
             player.classList.remove('playing')
+            cdAnimation.pause();
             _app.isPlaying = false
         }
 
@@ -167,7 +195,7 @@ const app = {
         // mobile
         progress.ontouchstart = function() {
             audio.ontimeupdate = function(){}
-        }
+        };
 
         progress.ontouchend = function(e) {
             const seekTime = e.target.value * audio.duration / 100
@@ -195,19 +223,99 @@ const app = {
             }
         }
 
+        // --------------handle control song --------------------------------
+
+        //toggle repeat button
+        repeatBtn.onclick = function() {
+            _app.isRepeat = !_app.isRepeat
+            repeatBtn.classList.toggle('active', _app.isRepeat)
+        }
         
+        //previous button
+        prevBtn.onclick = function() {
+            _app.removeActiveSong()
+            _app.isRandom ? _app.playRandomSong() : _app.previousSong() //main handle
+            _app.addActiveSong()
+            audio.play()
+            _app.scrollActiveIntoView()
+        }
+
+        //next button
+        nextBtn.onclick = function() {
+            _app.removeActiveSong()
+            _app.isRandom ? _app.playRandomSong() : _app.nextSong() //main handle
+            _app.addActiveSong()
+            audio.play()
+            _app.scrollActiveIntoView()
+        }
+
+        //toggle random button
+        randomBtn.onclick = function() {
+            _app.isRandom = !_app.isRandom
+            randomBtn.classList.toggle('active', _app.isRandom)
+        }
+
+        //next song when audio ended
+        audio.onended = function() {
+            _app.isRepeat ? audio.play() : nextBtn.click()
+        }
+        
+    },
+    removeActiveSong: function() {
+        this.currentSongElement.classList.remove('active')
+    },
+    addActiveSong: function() {
+        this.currentSongElement.classList.add('active')
+    },
+    scrollActiveIntoView: function() {
+        setTimeout(()=> {
+            this.currentSongElement.scrollIntoView({
+                behavior: "smooth", 
+                block: "end", 
+                // inline: "nearest"
+            })
+        }, 300)
     },
     loadCurrentSong: function() {
         heading.textContent = this.currentSong.name
         cdThumb.src = this.currentSong.image
         audio.src = this.currentSong.path
     },
+    nextSong: function() {
+        //change current Index
+        this.currentIndex++
+        if(this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0;
+        }
+        //load new song with new index
+        this.loadCurrentSong()
+    },
+    previousSong: function() {
+        //change current Index
+        this.currentIndex--
+        if(this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
+        }
+        //load new song with new index
+        this.loadCurrentSong()
+    },
+    playRandomSong: function() {
+        //handle random index
+        let newIndex
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length)
+        }
+        while(newIndex === this.currentIndex)
+        this.currentIndex = newIndex
 
+        //load new song with new random index
+        this.loadCurrentSong()
+    },
     start: function() { 
-        // define properties for object (app)
+        // define properties for object (app) - currentSong
         this.defineProperties();
 
-        // listen, handle events (DOM events)
+        // listen, handle events (DOM events), control
         this.handleEvents();
 
         // load current song to UI
