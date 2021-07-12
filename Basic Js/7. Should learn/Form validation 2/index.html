@@ -38,11 +38,10 @@
     </div>
     <script src="./validator.js"></script>
     <script>
-        Validator('#form-1', {
-            onSubmit: function(data) {
-                console.log(data)
-            }
-        })
+        var form = new Validator('#form-1');
+        form.onSubmit = function(data) {
+            console.log(data)
+        }
     </script>
 </body>
 </html>

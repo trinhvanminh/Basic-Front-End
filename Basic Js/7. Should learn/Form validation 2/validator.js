@@ -1,4 +1,5 @@
-function Validator(formSelector, options = {}) {
+function Validator(formSelector) {
+    const _this = this;
     var formRules = {};
     var validatorRules = {
         required: function (value) {
@@ -51,10 +52,11 @@ function Validator(formSelector, options = {}) {
             var name = event.target.name;
             var value = event.target.value;
             var errorMessage;
-            formRules[name].find(function(ruleFunc) {
-                errorMessage = ruleFunc(value);
-                return errorMessage
-            });
+
+            for(var rule of formRules[name]) {
+                errorMessage = rule(value);
+                if(errorMessage) break;
+            }
 
             if(name === 'password_confirmation') {
                 var pwd = formElement.querySelector('#password').value
@@ -85,6 +87,8 @@ function Validator(formSelector, options = {}) {
             };
         };
     };
+
+    
     //handle submit form
     formElement.onsubmit = function(event) {
         event.preventDefault();
@@ -95,10 +99,9 @@ function Validator(formSelector, options = {}) {
                 isValid = false;
             }
         }
-
         //submit when no error
         if(isValid === true) {
-            if(typeof options.onSubmit === 'function') {
+            if(typeof _this.onSubmit === 'function') {
                 var enableInput = formElement.querySelectorAll('[name]:not([disabled])')
                 //get value
                 var formValues = Array.from(enableInput).reduce(function(values, input) {
@@ -125,7 +128,7 @@ function Validator(formSelector, options = {}) {
                     return values;
                 }, {});
                 // callback return value
-                options.onSubmit(formValues);
+                _this.onSubmit(formValues);
             }
             else {
                 formElement.submit();
