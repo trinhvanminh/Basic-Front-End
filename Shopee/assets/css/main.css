@@ -1,3 +1,8 @@
+.app {
+    background-color: #f5f5f5;
+    width: 100vw;
+}
+
 
 .header {
     height: var(--header-height);
@@ -56,19 +61,30 @@
     display: flex;
 }
 
+
+
 /* header store */
 .header__store {
     background-color: var(--white-color);
     width: 185px;
     position: absolute;
     border-radius: 3px;
-    display: flex;
+    display: none;
     justify-content: center;
     flex-wrap: wrap;
     top: 28px;
-    display: none;
     animation: fadeIn ease-in 0.3s;
     z-index: 99;
+}
+
+.header__store2 {
+    background-color: var(--white-color);
+    width: 185px;
+    position: relative;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .header__store::before {
@@ -295,7 +311,6 @@
     border-left: 2px solid var(--border-color);
     height: 50%;
     padding-left: 16px;
-    padding-top: 2px;
     position: relative;
     cursor: pointer;
 }
@@ -569,7 +584,10 @@
 
 /* second header */
 
-
+.second-header {
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%);
+    background-color: #fff;
+}
 
 img {
     max-width: 100%;
@@ -578,8 +596,7 @@ img {
 }
 
 .second-header-slider {
-    
-    margin-top: 32px;
+    padding-top: 32px;
     display: grid;
     grid-template: 1fr 1fr / 2fr 1fr;
     grid-gap: 6px;
@@ -624,6 +641,85 @@ img {
     font-size: 1.2rem;
     text-align: center;
 }
+
+/* main-wrap */
+
+.welcome-package-banner {
+    height: auto;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.welcome-package-banner-img {
+    padding: 20px 0;
+}
+
+.popup__container {
+    width: 610px;
+    height: 240px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%);
+    position: relative;
+}
+
+.app-only-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6rem;
+}
+
+.card-content {
+    padding: 30px;
+    width: 400px;
+}
+
+.card-content-text {
+    font-weight: bold;
+}
+
+.card-content-addition {
+    padding-top: 8px;
+    font-size: 1.8rem;
+}
+
+
+.card-content-gg-play-store {
+    height: 72px;
+    width: auto;
+}
+
+.popup__close-btn {
+    width: 32px;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    padding: 4px;
+    background-color: #5a5a5a;
+    border: 3px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0 0px 2px 2px #ccc;
+}
+
+.shopee-svg-icon {
+    fill: #fff;
+}
+
+
+
+
 
 
 

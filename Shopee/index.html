@@ -218,6 +218,7 @@
 
             </div>
         </div>
+
         <div class="second-header">
             <div class="grid">
                 <div class="second-header-slider">
@@ -319,9 +320,42 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="main-wrap">
+            <div class="grid">
+                <div class="welcome-package-banner">
+                    <img class="welcome-package-banner-img" onclick="document.querySelector('.popup__container').style.display='block'" src="https://cf.shopee.vn/file/9c078b39474a7b12a33c380ab7ccf1d8_xxhdpi"/>
+                    <div class="popup__container">
+                        <div class="card">
+                            <div class="app-only-logo">
+                                <img src="./assets/img/popup-logo.png" alt="">
+                            </div>
+                            <div class="card-content">
+                                <h2 class="card-content-text">Tải ứng dụng Shopee để nhận ngay Quà Tặng từ chúng tớ nhé!</h2>
+                                <p class="card-content-addition">Nhận quà tặng và các deal độc quyền ngay bây giờ.</p>
+                                <div class="appstore">
+                                    <img class="card-content-apple_store-logo" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/d7ec71e4385302720c05d26373998a3c.png" alt="">
+                                    <img class="card-content-gg-play-store" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/52281dd0681964786b0979634f68fa0d.png" alt="" >
+                                </div>
+                            </div>
+                            <!-- QR -->
+                            <div class="header__store2">
+                                <img src="./assets/img/qr_code.png" alt="QR code" class="header__qr-code">
+                                <div class="head__store-list">
+                                    <img src="./assets/img/apple_store.png" alt="apple store"
+                                        class="header__store-item">
+                                    <img src="./assets/img/google_play.png" alt="google play"
+                                        class="header__store-item">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup__close-btn" onclick="document.querySelector('.popup__container').style.display='none'">
+                            <svg enable-background="new 0 0 11 11" viewBox="0 0 11 11" x="0" y="0" class="shopee-svg-icon "><path d="m10.7 9.2-3.8-3.8 3.8-3.7c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0l-3.8 3.7-3.8-3.7c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l3.8 3.7-3.8 3.8c-.4.4-.4 1 0 1.4.2.2.5.3.7.3.3 0 .5-.1.7-.3l3.8-3.8 3.8 3.8c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4z"></path></svg>
+                        </div>
+                    </div>
+                </div>
 
-
+                
+            </div>
         </div>
 
 
@@ -460,7 +494,6 @@
             modalElement.style.display = "none";
         }
 
-        
     </script>
 </body>
 
