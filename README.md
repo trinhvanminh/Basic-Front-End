@@ -3,16 +3,13 @@
 ## Start: 26/06/2021
 
 - The Band (Basic html, css)
-
 - BEM (Block - Element - Modifier)
 
   - Button
   - Toast message
-
 - Flex Box
-
+- Grid
 - Shopee (not complete yet)
-
 - Basic Js 
 
   - Core Knowledge 1
@@ -65,5 +62,5 @@
   - Should learn more (excercises)
     - Forms validation
 
-## Update: 07/07/2021
+## Update: 19/07/2021
 
