@@ -3,6 +3,7 @@
     height: var(--header-height);
     background-image: linear-gradient(to bottom, #f53e2d, #ff6633);
     position: sticky;
+    z-index: 10;
 }
 
 .header__navbar {
@@ -246,12 +247,13 @@
 
 .header__search-input:focus ~ .header__search-input-history {
     display: block;
+    
 }
 
 
 .header__search-input-history {
     position: absolute;
-    top: 30px;
+    top: 42px;
     width: 100%;
     display: none;
 }
@@ -327,7 +329,7 @@
 .header__search-option {
     position: absolute;
     right: 0;
-    top: 120%;
+    top: 160%;
     list-style: none;
     width: 130px;
     border-radius: 2px;
@@ -504,6 +506,7 @@
 }
 
 .header__cart-heading {
+    padding-top: 16px;
     font-size: 1.3rem;
     font-weight: 400;
     color: #bab7bb;
@@ -569,8 +572,8 @@
 
 
 img {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    max-height: 100%;
     border-radius: 2px;
 }
 
@@ -578,27 +581,59 @@ img {
     
     margin-top: 32px;
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr 1fr;
+    grid-template: 1fr 1fr / 2fr 1fr;
     grid-gap: 6px;
 }
 
 #carouselExampleIndicators {
-    /* z-index: -1; */
-    grid-area: 1 / 1 / 3 / 3;
+    grid-area: 1 / 1 / 3 / 2;
 }
 
 .right-img-1 {
-    grid-area: 1 / 3 / 3 / 4;
+    grid-area: 1 / 2 / 2 / 3;
 }
 
 .right-img-2 {
-    grid-area: 2 / 3 / 3 / 4;
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+/* second navbar  */
+.second-header-navbar {
+    margin-top: 32px;
+}
+.second-header-navbar-list {
+    display: grid;
+    grid-template: 108px / repeat(10, 1fr);
+}
+
+.second-header-navbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.second-header-navbar-item-img {
+    background-image: url(https://cf.shopee.vn/file/53d059b1f2592c05b8df8ae835950a2b_xhdpi);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 45px;
+    height: 45px;
+    margin-bottom: 8px;
+}
+
+.second-header-navbar-item-img + p {
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 
 
+.modal {
+    display: none;
+}
+
 /* auth-form */
 .auth-form {
+    display: none;
     border-radius: 2px;
 }
 
@@ -710,11 +745,20 @@ img {
     align-items: center;
     margin: 4px;
     border-radius: 2px;
+
+}
+
+.auth-form__socials--fb:hover {
+    color: var(--white-color);
 }
 
 .auth-form__socials--fb {
     background-color: #3A5a98;
     color: var(--white-color);
+}
+
+.auth-form__socials--gg:hover {
+    color: var(--text-color); 
 }
 
 .auth-form__socials--gg {
