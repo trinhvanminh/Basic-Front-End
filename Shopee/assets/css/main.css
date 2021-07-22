@@ -1143,6 +1143,8 @@ img {
     background-color:#fff;
     text-align: center;
     position: relative;
+    will-change: transform;
+    transition: transform 0.3s ease;
     cursor: pointer;
 }
 
@@ -1231,7 +1233,7 @@ img {
 
 .product-wrap__item:hover {
     border: 1px solid red;
-    transform: translateY(-2%);
+    transform: translateY(-1%);
     z-index: 1;
 }
 
