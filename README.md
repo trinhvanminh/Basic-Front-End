@@ -9,7 +9,7 @@
   - Toast message
 - Flex Box
 - Grid
-- Shopee (not complete yet)
+- Shopee
 - Basic Js 
 
   - Core Knowledge 1
@@ -56,11 +56,12 @@
   - Excercises
     - Tabs UI
     - Music Player
-  - Addtion Knowledge   <----- I'm here
+  - Addtion Knowledge  
     - Recursive
     - Polyfill
   - Should learn more (excercises)
     - Forms validation
 
-## Update: 19/07/2021
+## Update: 23/07/2021
 
+Next: responsive, advanced js
