@@ -8,6 +8,7 @@
 
 /* --------------Sử dụng đơn giản------------------- */
 /* 
+    .wide --> để giới hạn row 1200px
 
     .grid>.row>.col
 
@@ -33,7 +34,10 @@
     l-2     : chiếm 2 cột cho 1 cột lớn trên PC
     m-4     : chiếm 4 cột cho 1 cột lớn trên Tablet
     c-12    : chiếm 12 cột (full) cho 1 cột lớn trên mobile
+
+
     l-2-4   : chiếm 2.4 cột / 12 cột cho một cột lớn
+    m-0    : ẩn đi khi trên tablet
 */
 
 /* vị trí offset column - Khoảng margin so với ptu trước đó */
