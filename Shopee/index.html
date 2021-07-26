@@ -5,27 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/main.css">
-    <title>Document</title>
+    <!-- responsive -->
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+
 </head>
 
 <body>
     <div class="app">
         <div class="header">
-            <div class="grid">
+            <div class="grid wide">
                 <!-- header__navbar -->
                 <nav class="header__navbar">
                     <ul class="header__navbar-list">
@@ -90,7 +91,7 @@
 
                 <!-- header-with-search -->
                 <div class="header-with-search">
-                    <div class="header__logo">
+                    <div class="header__logo hide-on-tablet">
                         <svg viewBox="0 0 192 65" class="header__logo-img">
                             <g fill-rule="evenodd">
                                 <path fill="#fff"
@@ -100,7 +101,7 @@
                         </svg>
                     </div>
 
-                    <div class="header__search">
+                    <div class="header__search hide-on-mobile">
                         <div class="header__search-input-wrap">
                             <input type="text" class="header__search-input" placeholder="Nhập để tìm kiếm">
                             <div class="header__search-input-history">
@@ -220,7 +221,7 @@
         </div>
 
         <div class="second-header">
-            <div class="grid">
+            <div class="grid wide">
                 <div class="second-header-slider">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
@@ -321,7 +322,7 @@
         </div>
 
         <div class="main-wrap">
-            <div class="grid">
+            <div class="grid wide">
                 <div class="welcome-package-banner">
                     <img class="welcome-package-banner-img" onclick="document.querySelector('.popup__container').style.display='block'" src="https://cf.shopee.vn/file/9c078b39474a7b12a33c380ab7ccf1d8_xxhdpi"/>
                     <div class="popup__container">
@@ -1037,7 +1038,7 @@
 
         <footer class="footer">
             <div class="footer__heading-list">
-                <div class="grid">
+                <div class="grid wide">
                     <div class="footer__heading-item">
                         <h1 class="footer__heading-item-title">
                             SHOPEE - GÌ CŨNG CÓ, MUA HẾT Ở SHOPEE
@@ -1081,7 +1082,7 @@
                 </div>
             </div>
             <div class="footer__about">
-                <div class="grid">
+                <div class="grid wide">
                     <div class="footer__about-list">
                         <div class="footer__about-item">
                             <div class="footer__about-title">

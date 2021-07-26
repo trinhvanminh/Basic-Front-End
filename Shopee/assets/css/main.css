@@ -206,6 +206,7 @@
     height: var(--header-with-search-height);
     display: flex;
     align-items: center;
+    justify-content:center;
     margin: 0 8px;
 }
 
@@ -246,6 +247,9 @@
     padding: 0 16px;
 }
 
+.header__search-keyword {
+    width: 150%;
+}
 
 .header__search-keyword-list {
     list-style: none;
@@ -313,6 +317,7 @@
     border-left: 2px solid var(--border-color);
     height: 50%;
     padding-left: 16px;
+    width: 140px;
     position: relative;
     cursor: pointer;
 }
@@ -349,7 +354,8 @@
     top: 160%;
     list-style: none;
     width: 130px;
-    border-radius: 2px;
+    border-radius: 3px;
+    overflow: hidden;
     box-shadow: 0 0 3px #ccc;
     padding-left: 0;
     display: none;
@@ -359,7 +365,6 @@
 
 .header__search-option-item {
     background-color: var(--white-color);
-    border-radius: 3px;
     padding: 8px;
     padding-left: 15px;
     cursor: pointer;
@@ -431,8 +436,10 @@
 
 .header__cart:hover .header__cart-empty {
     transform: scale(1);
+    -webkit-transform: scale(1);
     opacity: 1;
 }
+
 
 .header__cart-notice {
     position: absolute;
@@ -444,7 +451,7 @@
     border-radius: 50%;
     border: 2px solid #ee4d2d;
     top: -7px;
-    right: 50px;
+    left: 54%;
     text-align: center;
 }
 
@@ -465,6 +472,8 @@
     transform: scale(0);
     opacity: 0;
     transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -webkit-transition: -webkit-transform 0.3s;
     /* chọn tâm transform */
     transform-origin: calc(100% - 12px) top; 
     will-change: opacity, transform;
@@ -887,6 +896,7 @@ img {
 
 .hot-product-wrap__content {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #ffecdb;
     border-radius: 12px;
@@ -895,13 +905,9 @@ img {
     position: relative;
 }
 
-.hot-product-wrap__detail {
+.hot-product-wrap__detail,
+.hot-product-wrap__brand {
     width: 49.5%;
-}
-
-
-.hot-product-wrap__brand{
-    width:49.5%;
 }
 
 .hot-product-wrap__heading {
@@ -1005,7 +1011,7 @@ img {
 .hot-product-wrap__banner {
     color: white;
     background-color:var(--main-color);
-    width: 700px;
+    width: 60%;
     height: 70px;
     font-size: 3.0rem;
     font-weight: 700;
@@ -1070,13 +1076,10 @@ img {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-top: 1px solid rgba(0,0,0,.05);
+    border: 1px solid rgba(0,0,0,.05);
     
 }
 
-.main-category__item:not(:first-child) {
-    border-left: 1px solid rgba(0,0,0,.05);
-}
 
 .main-category__item:hover { 
     transform: translateZ(0);
