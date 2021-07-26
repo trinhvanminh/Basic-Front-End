@@ -19,7 +19,10 @@
     .grid.wide>.row.no-gutters>.col
 
 */
-/* .row.no-gutters : loại bỏ gutter: phần padding của col và phần margin của row */
+/* 
+    .row.no-gutters : loại bỏ gutter: phần padding của col và phần margin của row 
+    .row.sm-gutter  : gutter nhỏ padding: 0 5px;
+*/
 
 
 
