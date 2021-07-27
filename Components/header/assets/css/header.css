@@ -1,0 +1,68 @@
+:root {
+    --grey-color: #666;
+    --black-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    height: 40px;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+}
+
+.header__switch {
+    display: flex;
+    color: var(--grey-color);
+}
+
+.header__switch-language {
+
+}
+
+.header__lang-img {
+
+}
+
+.header__lang-text {
+    
+}
+
+.header__lang-list {
+    list-style-type: none;
+    display: none;
+}
+
+.header__lang-item {
+
+}
+
+.header__lang-item-img {
+
+}
+
+.header__lang-item-text {
+
+}
+
+.header__switch-currency {
+
+}
+
+.header__currency-text {
+
+}
+
+.header__currency-list {
+    list-style: none;
+    display: none;
+}
+
+.header__currency-item {
+
+}
