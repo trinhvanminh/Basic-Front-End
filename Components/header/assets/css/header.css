@@ -11,7 +11,7 @@
 
 html {
 	font-size: 62.5%;
-	/* line-height: 1.6rem; */
+	line-height: 1.6rem;
 	font-family: "Poppins", sans-serif;
 	box-sizing: border-box;
 }
@@ -19,23 +19,28 @@ html {
 .header {
 	height: 40px;
 	background-color: #222;
+}
+
+.header__content {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
+	height: 40px;
 }
 
 .header__switch {
 	display: flex;
 	color: var(--grey-color);
 	height: 40px;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .header__switch-language {
 	position: relative;
 	margin-right: 16px;
-    display: flex;
-    align-items: center;
-    height: 100%;
+	display: flex;
+	align-items: center;
+	height: 100%;
 }
 
 .header__switch-language::before {
@@ -72,7 +77,6 @@ html {
 }
 
 .header__lang-img {
-	
 }
 
 .header__lang-text {
@@ -118,10 +122,10 @@ html {
 }
 
 .header__switch-currency {
-    height: 100%;
-    display: flex;
-    position: relative;
-    align-items: center;
+	height: 100%;
+	display: flex;
+	position: relative;
+	align-items: center;
 }
 
 .header__switch-currency::before {
@@ -167,16 +171,16 @@ html {
 }
 
 .header__currency-list::before {
-    content: "";
-    width: 100%;
-    height: 20px;
-    position: absolute;
-    top: -12px;
-    left: 0;
+	content: "";
+	width: 100%;
+	height: 20px;
+	position: absolute;
+	top: -12px;
+	left: 0;
 }
 
 .header__currency-item {
-    padding: 12px 10px;
+	padding: 12px 10px;
 }
 
 .header__currency-item:hover {
@@ -186,3 +190,43 @@ html {
 .header__currency-item-text {
 	padding-left: 8px;
 }
+
+/* mobile */
+.header__anchor {
+	display: none;
+}
+
+.header__info {
+	display: flex;
+	color: var(--grey-color);
+	height: 40px;
+	cursor: pointer;
+	font-size: 1.2rem;
+}
+
+.header__info-item {
+	height: 100%;
+	display: flex;
+	padding: 0 16px;
+	border-left: 1px solid rgba(136, 136, 136, 0.2);
+	align-items: center;
+	justify-content: center;
+	min-width: 100px;
+}
+
+.header__info-item i {
+	margin-right: 8px;
+}
+
+.header__info-item:last-child {
+	border-right: 1px solid rgba(136, 136, 136, 0.2);
+}
+
+.header__info-text {
+	transition: color linear 0.2s;
+}
+
+.header__info-item:hover > .header__info-text {
+	color: #e34444d2;
+}
+
