@@ -1,0 +1,16 @@
+myFn.call(this)  
+--> tương tự như truyền this ở ngoài truyền vào làm đối số cho hàm myFn
+--> chứ ko dùng this-đối tượng gọi nó
+
+const boundMyObj = myObj.myFn.bind(myObj)
+---> chỉ định this của boundMyObj là this - myObj
+---> kể cả trong function invocation.
+
+
+cách giải quyết cho 2 th trên có thể dùng () => arrow function
+
+Starting ECMAScript 2015, JavaScript allows to define constructors using class syntax:
+
+
+myFunction.call(thisArg, arg1, arg2, ...)
+myFunction.apply(thisArg, [arg1, arg2, ...])
