@@ -2,14 +2,16 @@
 
 ## Start: 26/06/2021
 
-- The Band (Basic html, css)
-- BEM (Block - Element - Modifier)
+- HTML, CSS
 
-  - Button
-  - Toast message
-- Flex Box
-- Grid
-- Shopee
+  - BEM (Block - Element - Modifier)
+    - Button
+    - Toast message
+  - Flex Box
+  - Grid
+  - Shopee
+  - Responsive
+
 - Basic Js 
 
   - Core Knowledge 1
@@ -61,7 +63,14 @@
     - Polyfill
   - Should learn more (excercises)
     - Forms validation
+  
+- Advanced js
 
-## Update: 23/07/2021
+  - IIFE (Immediately invoked function expression)
+  - Scope
+  - Bind, Apply, Call
+  - Clousure
+  - Hoisting
+  - Strict mode
 
-Next: responsive, advanced js
+  
