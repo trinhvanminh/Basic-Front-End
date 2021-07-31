@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function Child() {
+            console.log("    Child: render start");
+
+            const [count, setCount] = React.useState(() => {
+                console.log("    Child: useState(() => 0)");
+                return 0;
+            });
+
+            console.log(`    Child: count = ${count}`);
+
+            React.useEffect(() => {
+                console.log("    Child: useEffect(() => {})");
+                return () => {
+                    console.log("    Child: useEffect(() => {}) cleanup");
+                };
+            });
+
+            React.useEffect(() => {
+                console.log("    Child: useEffect(() => {}, [])");
+                return () => {
+                    console.log("    Child: useEffect(() => {}, []) cleanup");
+                };
+            }, []);
+
+            React.useEffect(() => {
+                console.log("    Child: useEffect(() => {}, [count])");
+                return () => {
+                    console.log("    Child: useEffect(() => {}, [count]) cleanup");
+                };
+            }, [count]);
+
+            const element = (
+                <button onClick={() => setCount((previousCount) => previousCount + 1)}>
+                    {count}
+                </button>
+            );
+
+            console.log("    Child: render end");
+
+            return element;
+        }
+
+        function App() {
+            console.log("App: render start");
+
+            const [showChild, setShowChild] = React.useState(() => {
+                console.log("App: useState(() => false)");
+                return false;
+            });
+
+            console.log(`App: showChild = ${showChild}`);
+
+            React.useEffect(() => {
+                console.log("App: useEffect(() => {})");
+                return () => {
+                    console.log("App: useEffect(() => {}) cleanup");
+                };
+            });
+
+            React.useEffect(() => {
+                console.log("App: useEffect(() => {}, [])");
+                return () => {
+                    console.log("App: useEffect(() => {}, []) cleanup");
+                };
+            }, []);
+
+            React.useEffect(() => {
+                console.log("App: useEffect(() => {}, [showChild])");
+                return () => {
+                    console.log("App: useEffect(() => {}, [showChild]) cleanup");
+                };
+            }, [showChild]);
+
+            const element = (
+                <>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={showChild}
+                            onChange={(e) => setShowChild(e.target.checked)}
+                        />{" "}
+                        show child
+                    </label>
+                    <div>
+                        {showChild ? <Child /> : null}
+                    </div>
+                </>
+            );
+
+            console.log("App: render end");
+
+            return element;
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

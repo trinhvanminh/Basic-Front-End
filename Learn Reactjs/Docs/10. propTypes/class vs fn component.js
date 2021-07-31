@@ -23,3 +23,6 @@ export const MyComponentClass = (props) => {
 	let title = props.title;
 	return <h1>{title}</h1>;
 };
+
+
+
