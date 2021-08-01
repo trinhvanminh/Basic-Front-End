@@ -4,7 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Demo
 
-[chat engine]([Chat App (chatenginedemo.netlify.app)](https://chatenginedemo.netlify.app/))
+[Chat App](https://chatenginedemo.netlify.app/).
+
+- trinhvanminh : 123 
+- trinhvanminh clone : 123
 
 
 
