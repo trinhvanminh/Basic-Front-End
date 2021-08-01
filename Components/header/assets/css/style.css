@@ -59,7 +59,6 @@ html {
 
 .header__switch-language::after {
 	content: "";
-	position: absolute;
 	width: 1px;
 	height: 10px;
 	background: rgba(136, 136, 136, 0.2);
