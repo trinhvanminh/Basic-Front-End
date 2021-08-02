@@ -3,6 +3,10 @@ import Pagination from "./components/Pagination";
 import PostList from "./components/PostList";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import queryString from "query-string";
+import PostFiltersForm from "./components/PostFiltersForm";
+import Clock from "./components/Clock";
+import Clock2 from "./components/Clock2";
 
 function App() {
 	const [todoList, setTodoList] = useState([
@@ -21,15 +25,14 @@ function App() {
 	const [filters, setFilters] = useState({
 		_limit: 10,
 		_page: 1,
+		title_like: null,
 	});
 
 	useEffect(() => {
 		async function fetchPostList() {
 			try {
 				//_limit=10&_page=1
-				const paramsString = Object.keys(filters)
-					.map((key) => key + "=" + filters[key])
-					.join("&");
+				const paramsString = queryString.stringify(filters);
 				const requestUrl = `http://js-post-api.herokuapp.com/api/posts?${paramsString}`;
 				const response = await fetch(requestUrl);
 				const responseJSON = await response.json();
@@ -69,9 +72,21 @@ function App() {
 		setTodoList((prev) => [newTodo, ...prev]);
 	};
 
+	const handleFiltersChange = (newFilters) => {
+		const { searchTerm } = newFilters;
+		setFilters({
+			...filters, 
+			title_like: searchTerm, 
+			_page: 1,
+		});
+	};
+
 	return (
 		<div className="app">
-			<h1>This is to do list</h1>
+			{/* <Clock />
+			<Clock2/> */}
+			<h1>This is to post list</h1>
+			<PostFiltersForm onSubmit={handleFiltersChange} />
 			<PostList posts={postList} />
 			<Pagination
 				pagination={pagination}
@@ -79,6 +94,8 @@ function App() {
 			/>
 			{/* <TodoForm onSubmit={handleOnSubmitForm} /> */}
 			{/* <TodoList todos={todoList} onTodoClick={handleTodoClick} /> */}
+
+
 		</div>
 	);
 }
