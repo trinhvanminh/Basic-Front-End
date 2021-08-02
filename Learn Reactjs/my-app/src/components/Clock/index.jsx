@@ -1,14 +1,9 @@
-import useClock from '../../hooks/useClock';
-
+import React from "react";
+import useClock from "../../hooks/useClock";
 
 const Clock = () => {
-    const { timeString } = useClock();
-
-    return (
-        <div>
-            {timeString}
-        </div>
-    );
-}
+	const { timeString } = useClock();
+	return <div>{timeString}</div>;
+};
 
 export default Clock;

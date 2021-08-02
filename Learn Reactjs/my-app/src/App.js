@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Pagination from "./components/Pagination";
 import PostList from "./components/PostList";
 import TodoForm from "./components/TodoForm";
@@ -7,6 +7,7 @@ import queryString from "query-string";
 import PostFiltersForm from "./components/PostFiltersForm";
 import Clock from "./components/Clock";
 import Clock2 from "./components/Clock2";
+import ThemeContextProvider, { ThemeContext } from "./contexts/ThemeContext";
 
 function App() {
 	const [todoList, setTodoList] = useState([
@@ -75,27 +76,57 @@ function App() {
 	const handleFiltersChange = (newFilters) => {
 		const { searchTerm } = newFilters;
 		setFilters({
-			...filters, 
-			title_like: searchTerm, 
+			...filters,
+			title_like: searchTerm,
 			_page: 1,
 		});
 	};
 
+	const handleToggleTheme = () => {
+		setTheme((prev) => ({
+			...prev,
+			isLightTheme: !prev.isLightTheme,
+		}));
+	};
+	//load context theme
+	const { theme, setTheme } = useContext(ThemeContext);
 	return (
-		<div className="app">
-			{/* <Clock />
-			<Clock2/> */}
+		<div
+			className="app"
+			style={theme.isLightTheme ? theme.light : theme.dark}
+		>
+			<button
+				className="toggle-theme"
+				style={{
+					minWidth: "100px",
+					height: "50px",
+					marginBottom: "24px",
+					padding: "0 8px",
+				}}
+				onClick={handleToggleTheme}
+			>
+				Toggle Theme with useContext
+			</button>
+			<h1>This is to Clock using custom hook: Clock</h1>
+			<br />
+			<Clock />
+			<Clock2 />
+			<br />
 			<h1>This is to post list</h1>
-			<PostFiltersForm onSubmit={handleFiltersChange} />
-			<PostList posts={postList} />
-			<Pagination
-				pagination={pagination}
-				onPageChange={handlePageChange}
-			/>
-			{/* <TodoForm onSubmit={handleOnSubmitForm} /> */}
-			{/* <TodoList todos={todoList} onTodoClick={handleTodoClick} /> */}
-
-
+			<br />
+			<div className="post-list">
+				<PostFiltersForm onSubmit={handleFiltersChange} />
+				<PostList posts={postList} />
+				<Pagination
+					pagination={pagination}
+					onPageChange={handlePageChange}
+				/>
+			</div>
+			<br />
+			<h1>This is to todo list</h1>
+			<br />
+			<TodoForm onSubmit={handleOnSubmitForm} />
+			<TodoList todos={todoList} onTodoClick={handleTodoClick} />
 		</div>
 	);
 }
