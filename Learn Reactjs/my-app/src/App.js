@@ -107,12 +107,12 @@ function App() {
 			>
 				Toggle Theme with useContext
 			</button>
-			<h1>This is to Clock using custom hook: Clock</h1>
+			<h1>This is Clock using custom hook: Clock</h1>
 			<br />
 			<Clock />
 			<Clock2 />
 			<br />
-			<h1>This is to post list</h1>
+			<h1>This is post list</h1>
 			<br />
 			<div className="post-list">
 				<PostFiltersForm onSubmit={handleFiltersChange} />
@@ -123,7 +123,7 @@ function App() {
 				/>
 			</div>
 			<br />
-			<h1>This is to todo list</h1>
+			<h1>This is todo list</h1>
 			<br />
 			<TodoForm onSubmit={handleOnSubmitForm} />
 			<TodoList todos={todoList} onTodoClick={handleTodoClick} />

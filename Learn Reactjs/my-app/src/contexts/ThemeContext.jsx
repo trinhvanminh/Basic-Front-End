@@ -7,11 +7,11 @@ const ThemeContextProvider = ({ children }) => {
 	const [theme, setTheme] = useState({
 		isLightTheme: true,
 		light: {
-			backgroundColor: "white",
+			backgroundColor: "rgb(240, 240, 240)",
 			color: "black",
 		},
 		dark: {
-			backgroundColor: "black",
+			backgroundColor: "rgb(40, 40, 40)",
 			color: "white",
 		},
 	});
