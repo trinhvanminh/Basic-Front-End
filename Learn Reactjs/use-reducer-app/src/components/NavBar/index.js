@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../Button/Button";
-import "./navbar.css";
+import Button from "../Button";
+import "./style.css";
 
 function NavBar() {
 	const [click, setClick] = useState(false);
 	const [button, setButton] = useState(true);
+
 	// show/hide menu  on mobile
 	const handleClick = () => setClick(!click);
-	const closeMobileMenu = () => setClick(!click);
+	const closeMobileMenu = () => click && setClick(!click);
+
 	//show btn in mobile
 	const showButton = () => {
 		if (window.innerWidth <= 960) setButton(false);
 		else setButton(true);
 	};
+
+	useEffect(() => {
+		showButton();
+	}, []);
+
 	window.addEventListener("resize", showButton);
 
 	return (
 		<>
 			<nav className="navbar">
 				<div className="navbar-container">
-					<Link to="/" className="navbar-logo">
+					<Link
+						to="/"
+						className="navbar-logo"
+						onClick={closeMobileMenu}
+					>
 						TRVL <i className="fab fa-typo3" />
 					</Link>
 					<div className="menu-icon" onClick={handleClick}>
