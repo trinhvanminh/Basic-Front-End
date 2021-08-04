@@ -1,3 +1,8 @@
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/auth";
+import "firebase/firestore";
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
 	apiKey: "AIzaSyCm6ndz3_M6kZj9gjeBRorBn6vhArMoy-g",
@@ -9,11 +14,12 @@ const firebaseConfig = {
 	measurementId: "G-8DSFQDJYM0",
 };
 
-import firebase from 'firebase';
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-export default db;
+export { db, auth };
 
-//"todos" colection is created in firebase website
+export default firebase;

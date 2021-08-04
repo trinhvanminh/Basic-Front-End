@@ -1,14 +1,21 @@
-import './App.css';
-import db from './firebase'
+import React from "react";
+import Login from "./components/Login";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import ChatRoom from "./components/ChatRoom";
+import "./App.css";
+import AuthProvider from "./components/Context/AuthProvider";
 
 function App() {
-  //"todos" colection is created in firebase website
-  console.log(db.colention('todos'))
-  return (
-    <div className="App">
-      Learn React  
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<AuthProvider>
+				<Switch>
+					<Route path="/login" component={Login} />
+					<Route path="/" exact component={ChatRoom} />
+				</Switch>
+			</AuthProvider>
+		</BrowserRouter>
+	);
 }
 
 export default App;
