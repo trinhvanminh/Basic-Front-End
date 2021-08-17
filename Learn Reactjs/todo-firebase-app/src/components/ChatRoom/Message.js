@@ -22,16 +22,16 @@ const WrapperStyled = styled.div`
 
 function Message({input, displayName, createAt, photoURL}) {
     return (
-        <div>
+        <WrapperStyled>
             <div>
-                <Avatar src={photoURL}>A</Avatar>
+                <Avatar size='small' src={photoURL}>A</Avatar>
                 <Typography.Text className='author'>{displayName}</Typography.Text>
                 <Typography.Text className='date'>{createAt}</Typography.Text>
             </div>
             <div>
                 <Typography.Text className='content'>{input}</Typography.Text>
             </div>
-        </div>
+        </WrapperStyled>
     )
 }
 

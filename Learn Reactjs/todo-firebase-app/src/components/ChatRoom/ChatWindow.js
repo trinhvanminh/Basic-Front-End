@@ -32,13 +32,41 @@ const ButtonGroupStyled = styled.div`
 	align-items: center;
 `;
 
-const ContentStyled = styled.div``;
+const WrapperStyled = styled.div`
+	height: 100vh;
+`;
 
-const MessageListStyled = styled.div``;
+const ContentStyled = styled.div`
+	height: calc(100% - 56px);
+	display: flex;
+	flex-direction: column;
+	padding: 11px;
+	justify-content: flex-end;
+`;
+
+const FormStyled = styled(Form)`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2px 2px 2px 0;
+	border: 1px solid rgb(230, 230, 230);
+	border-radius: 2px;
+
+	.ant-form-item {
+		flex: 1;
+		margin-bottom: 0;
+	}
+`;
+
+const MessageListStyled = styled.div`
+	max-height: 100%;
+	overflow-y: auto;
+
+`;
 
 function Chatwindow() {
 	return (
-		<div>
+		<WrapperStyled>
 			<HeaderStyled>
 				<div className="room__info">
 					<p className="room__name">Room 1</p>
@@ -94,15 +122,19 @@ function Chatwindow() {
 						createAt={123123123}
 					/>
 				</MessageListStyled>
-				<Form>
+				<FormStyled>
 					<Form.Item>
-						<Input />
+						<Input
+							placeholder="Nhập tin nhắn..."
+							bordered={false}
+							autoComplete="off"
+						/>
 					</Form.Item>
 					<Button>Gửi</Button>
-				</Form>
+				</FormStyled>
 			</ContentStyled>
-		</div>
+		</WrapperStyled>
 	);
-};
+}
 
 export default Chatwindow;

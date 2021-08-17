@@ -26,6 +26,7 @@ function AuthProvider({ children }) {
 			}
             else {
                 //neu user login sai dieu huong tro lai login page
+				setIsLoading(false);
                 history.push("/login");
             }
 		});

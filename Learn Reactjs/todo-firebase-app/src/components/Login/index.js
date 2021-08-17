@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Button, Typography } from "antd";
 import firebase, { auth } from "../firebase/config";
+import { addDocument } from "../firebase/services";
 import { FacebookOutlined, GooglePlusOutlined } from "@ant-design/icons";
 
 function Login() {
@@ -8,8 +9,19 @@ function Login() {
 
 	const { Title } = Typography;
 
-	const handleLogin = () => {
-		auth.signInWithPopup(fbProvider);
+	const handleFbLogin = async () => {
+		const data = await auth.signInWithPopup(fbProvider);
+		console.log({ data });
+		const { additionalUserInfo, user } = data;
+		if (additionalUserInfo?.isNewUser) {
+			addDocument("users", {
+				displayName: user.displayName,
+				email: user.email,
+				photoURL: user.photoURL,
+				uid: user.uid,
+				providerId: additionalUserInfo.providerId,
+			});
+		}
 	};
 
 	return (
@@ -30,7 +42,7 @@ function Login() {
 					</Button>
 					<Button
 						style={{ width: "100%" }}
-						onClick={handleLogin}
+						onClick={handleFbLogin}
 						icon={<FacebookOutlined />}
 					>
 						Đăng nhập với Facebook
