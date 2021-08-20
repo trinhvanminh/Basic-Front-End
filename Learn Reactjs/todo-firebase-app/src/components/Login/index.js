@@ -11,6 +11,7 @@ function Login() {
 
 	const handleFbLogin = async () => {
 		const data = await auth.signInWithPopup(fbProvider);
+		console.log('data')
 		console.log({ data });
 		const { additionalUserInfo, user } = data;
 		if (additionalUserInfo?.isNewUser) {

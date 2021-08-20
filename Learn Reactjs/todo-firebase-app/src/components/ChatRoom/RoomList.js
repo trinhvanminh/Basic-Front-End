@@ -1,10 +1,8 @@
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { Button, Collapse, Typography } from "antd";
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../Context/AppProvider";
-import { AuthContext } from "../Context/AuthProvider";
-import useFirestore from "../hooks/useFirestore";
 
 //cac class cua ant-design (inspect) overwrite css lai
 // &&& -> vao 3 cap -> vi du .cap1 .cap2 .cap3 .ant-collapse-header
@@ -30,7 +28,7 @@ const LinkStyled = styled(Typography.Link)`
 `;
 
 function RoomList() {
-	const { rooms, setIsAddRoomVisible } = useContext(AppContext);
+	const { rooms, setIsAddRoomVisible, setSelectedRoomId } = useContext(AppContext);
 
 	const handleAddRoom = () => {
 		setIsAddRoomVisible(true);
@@ -40,7 +38,7 @@ function RoomList() {
 			<PanelStyled header="Danh sách các phòng" key="1">
 				{rooms &&
 					rooms.map((room) => (
-						<LinkStyled key={room.id}>{room.name}</LinkStyled>
+						<LinkStyled key={room.id} onClick={() => setSelectedRoomId(room.id)}>{room.name}</LinkStyled>
 					))}
 				<Button
 					className="add-room"

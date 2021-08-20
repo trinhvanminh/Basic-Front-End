@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import { Avatar, Button, Tooltip, Form, Input } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import Message from "./Message";
+import { AppContext } from "../Context/AppProvider";
 
 const HeaderStyled = styled.div`
 	display: flex;
@@ -61,16 +62,21 @@ const FormStyled = styled(Form)`
 const MessageListStyled = styled.div`
 	max-height: 100%;
 	overflow-y: auto;
-
 `;
 
 function Chatwindow() {
+	const { selectedRoom, members } = useContext(AppContext);
+
+	console.log("selectedRoom", { selectedRoom });
+
 	return (
 		<WrapperStyled>
 			<HeaderStyled>
 				<div className="room__info">
-					<p className="room__name">Room 1</p>
-					<span className="room__descriptions">Đây là Room 1</span>
+					<p className="room__name">{selectedRoom?.name}</p>
+					<span className="room__descriptions">
+						{selectedRoom?.description}
+					</span>
 				</div>
 				<ButtonGroupStyled>
 					<Button icon={<UserAddOutlined />} type="text">
@@ -79,18 +85,21 @@ function Chatwindow() {
 
 					<Avatar.Group size="small" maxCount={2}>
 						{/* tooltip hiển thị thông tin khi hover title */}
-						<Tooltip title="A" placement="bottom">
-							<Avatar>A</Avatar>
-						</Tooltip>
-						<Tooltip title="B" placement="bottom">
-							<Avatar>B</Avatar>
-						</Tooltip>
-						<Tooltip title="C" placement="bottom">
-							<Avatar>C</Avatar>
-						</Tooltip>
-						<Tooltip title="D" placement="bottom">
-							<Avatar>D</Avatar>
-						</Tooltip>
+						{members.map((member) => (
+							<Tooltip
+								title={member.displayName}
+								key={member.id}
+								placement="bottom"
+							>
+								<Avatar src={member.photoURL}>
+									{member.photoURL
+										? ""
+										: member.displayName
+												?.charAt(0)
+												?.toUpperCase()}
+								</Avatar>
+							</Tooltip>
+						))}
 					</Avatar.Group>
 				</ButtonGroupStyled>
 			</HeaderStyled>
