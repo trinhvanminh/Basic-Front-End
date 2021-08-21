@@ -1,9 +1,12 @@
-import React, { useContext, useMemo } from "react";
-import { Avatar, Button, Tooltip, Form, Input } from "antd";
+import React, { useContext, useMemo, useState } from "react";
+import { Avatar, Button, Tooltip, Form, Input, Alert } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import Message from "./Message";
 import { AppContext } from "../Context/AppProvider";
+import { AuthContext } from "../Context/AuthProvider";
+import { addDocument } from "../firebase/services";
+import useFirestore from "../hooks/useFirestore";
 
 const HeaderStyled = styled.div`
 	display: flex;
@@ -65,83 +68,121 @@ const MessageListStyled = styled.div`
 `;
 
 function Chatwindow() {
-	const { selectedRoom, members } = useContext(AppContext);
+	const { selectedRoom, members, setIsInviteMemberVisible } =
+		useContext(AppContext);
+	const { uid, photoURL, displayName } = useContext(AuthContext);
+	const [form] = Form.useForm();
+
+	const [inputValue, setInputValue] = useState("");
 
 	console.log("selectedRoom", { selectedRoom });
 
+	const handleInputChange = (e) => {
+		setInputValue(e.target.value);
+	};
+
+	const handleOnSubmit = () => {
+		addDocument("messages", {
+			text: inputValue,
+			uid,
+			photoURL,
+			roomId: selectedRoom.id,
+			displayName,
+		});
+
+		form.resetFields(["message"]);
+	};
+
+	const condition = useMemo(
+		() => ({
+			fieldName: "roomId",
+			operator: "==",
+			compareValue: selectedRoom.id,
+		}),
+		[selectedRoom.id]
+	);
+
+	const messages = useFirestore("messages", condition);
+	console.log({ messages });
+
 	return (
 		<WrapperStyled>
-			<HeaderStyled>
-				<div className="room__info">
-					<p className="room__name">{selectedRoom?.name}</p>
-					<span className="room__descriptions">
-						{selectedRoom?.description}
-					</span>
-				</div>
-				<ButtonGroupStyled>
-					<Button icon={<UserAddOutlined />} type="text">
-						Mời
-					</Button>
-
-					<Avatar.Group size="small" maxCount={2}>
-						{/* tooltip hiển thị thông tin khi hover title */}
-						{members.map((member) => (
-							<Tooltip
-								title={member.displayName}
-								key={member.id}
-								placement="bottom"
+			{selectedRoom.id ? (
+				<>
+					<HeaderStyled>
+						<div className="room__info">
+							<p className="room__name">{selectedRoom?.name}</p>
+							<span className="room__descriptions">
+								{selectedRoom?.description}
+							</span>
+						</div>
+						<ButtonGroupStyled>
+							<Button
+								icon={<UserAddOutlined />}
+								type="text"
+								onClick={() => setIsInviteMemberVisible(true)}
 							>
-								<Avatar src={member.photoURL}>
-									{member.photoURL
-										? ""
-										: member.displayName
-												?.charAt(0)
-												?.toUpperCase()}
-								</Avatar>
-							</Tooltip>
-						))}
-					</Avatar.Group>
-				</ButtonGroupStyled>
-			</HeaderStyled>
+								Mời
+							</Button>
 
-			<ContentStyled>
-				<MessageListStyled>
-					<Message
-						input="test"
-						photoURL={null}
-						displayName={"A"}
-						createAt={123123123}
-					/>
-					<Message
-						input="test"
-						photoURL={null}
-						displayName={"A"}
-						createAt={123123123}
-					/>
-					<Message
-						input="test"
-						photoURL={null}
-						displayName={"A"}
-						createAt={123123123}
-					/>
-					<Message
-						input="test"
-						photoURL={null}
-						displayName={"A"}
-						createAt={123123123}
-					/>
-				</MessageListStyled>
-				<FormStyled>
-					<Form.Item>
-						<Input
-							placeholder="Nhập tin nhắn..."
-							bordered={false}
-							autoComplete="off"
-						/>
-					</Form.Item>
-					<Button>Gửi</Button>
-				</FormStyled>
-			</ContentStyled>
+							<Avatar.Group size="small" maxCount={2}>
+								{/* tooltip hiển thị thông tin khi hover title */}
+								{members.map((member) => (
+									<Tooltip
+										title={member.displayName}
+										key={member.id}
+										placement="bottom"
+									>
+										<Avatar src={member.photoURL}>
+											{member.photoURL
+												? ""
+												: member.displayName
+														?.charAt(0)
+														?.toUpperCase()}
+										</Avatar>
+									</Tooltip>
+								))}
+							</Avatar.Group>
+						</ButtonGroupStyled>
+					</HeaderStyled>
+
+					<ContentStyled>
+						<MessageListStyled>
+							{messages.map((mes) => (
+								<Message
+									key={mes.id}
+									input={mes.text}
+									photoURL={mes.photoURL}
+									displayName={mes.displayName}
+									createdAt={mes.createdAt}
+								/>
+							))}
+						</MessageListStyled>
+						<FormStyled form={form}>
+							<Form.Item name="message">
+								<Input
+									onChange={handleInputChange}
+									onPressEnter={handleOnSubmit}
+									placeholder="Nhập tin nhắn..."
+									bordered={false}
+									autoComplete="off"
+								/>
+							</Form.Item>
+							<Button type="primary" onClick={handleOnSubmit}>
+								Gửi
+							</Button>
+						</FormStyled>
+					</ContentStyled>
+				</>
+			) : (
+				<Alert
+					message="Hãy chọn phòng"
+					type="info"
+					showIcon
+					style={{ margin: 5 }}
+					closable
+				/>
+			)}
 		</WrapperStyled>
 	);
 }

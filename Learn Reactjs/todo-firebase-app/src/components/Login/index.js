@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Button, Typography } from "antd";
 import firebase, { auth } from "../firebase/config";
-import { addDocument } from "../firebase/services";
+import { addDocument, generateKeywords } from "../firebase/services";
 import { FacebookOutlined, GooglePlusOutlined } from "@ant-design/icons";
 
 function Login() {
@@ -21,6 +21,7 @@ function Login() {
 				photoURL: user.photoURL,
 				uid: user.uid,
 				providerId: additionalUserInfo.providerId,
+				keywords: generateKeywords(user.displayName)
 			});
 		}
 	};
