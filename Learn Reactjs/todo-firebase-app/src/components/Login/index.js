@@ -11,7 +11,7 @@ function Login() {
 
 	const handleFbLogin = async () => {
 		const data = await auth.signInWithPopup(fbProvider);
-		console.log('data')
+		console.log("data");
 		console.log({ data });
 		const { additionalUserInfo, user } = data;
 		if (additionalUserInfo?.isNewUser) {
@@ -21,7 +21,25 @@ function Login() {
 				photoURL: user.photoURL,
 				uid: user.uid,
 				providerId: additionalUserInfo.providerId,
-				keywords: generateKeywords(user.displayName)
+				keywords: generateKeywords(user.displayName),
+			});
+		}
+	};
+
+	const ggProvider = new firebase.auth.GoogleAuthProvider();
+	const handleGgLogin = async () => {
+		const data = await auth.signInWithPopup(ggProvider);
+		console.log("data");
+		console.log({ data });
+		const { additionalUserInfo, user } = data;
+		if (additionalUserInfo?.isNewUser) {
+			addDocument("users", {
+				displayName: user.displayName,
+				email: user.email,
+				photoURL: user.photoURL,
+				uid: user.uid,
+				providerId: additionalUserInfo.providerId,
+				keywords: generateKeywords(user.displayName),
 			});
 		}
 	};
@@ -38,6 +56,7 @@ function Login() {
 
 					<Button
 						style={{ width: "100%", marginBottom: "8px" }}
+						onClick={handleGgLogin}
 						icon={<GooglePlusOutlined />}
 					>
 						Đăng nhập với Google

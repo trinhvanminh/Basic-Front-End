@@ -1,10 +1,9 @@
-import React, { useContext, useMemo, useState } from "react";
-import { Modal, Form, Select, Spin, Avatar } from "antd";
+import { Avatar, Form, Modal, Select, Spin } from "antd";
 import { debounce } from "lodash";
-
+import React, { useContext, useMemo, useState } from "react";
 import { AppContext } from "../Context/AppProvider";
-import { AuthContext } from "../Context/AuthProvider";
 import { db } from "../firebase/config";
+
 
 function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
 	const [fetching, setFetching] = useState(false);
@@ -29,7 +28,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
 			labelInValue
 			filterOption={false}
 			onSearch={debounceFetcher}
-			notFoundConten={fetching ? <Spin size="small" /> : null}
+			notFoundContent={fetching ? <Spin size="small" /> : null}
 			{...props}
 		>
 			{
@@ -49,7 +48,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
 								? ""
 								: opt.label?.charAt(0)?.toUpperCase()}
 						</Avatar>
-						{opt.label}
+						{`${opt.label}`}
 					</Select.Option>
 				))
 			}
@@ -69,7 +68,7 @@ async function fetchUserList(search, curMembers) {
 				label: doc.data().displayName,
 				value: doc.data().uid,
 				photoURL: doc.data().photoURL,
-			}).fitler(opt => !curMembers.includes(opt.value)));
+			})).filter(opt => !curMembers.includes(opt.value));
 		});
 }
 
@@ -81,8 +80,6 @@ function InviteMemberModal() {
 		selectedRoom,
 	} = useContext(AppContext);
 	const [value, setValue] = useState("");
-
-	const { uid } = useContext(AuthContext);
 
 	const [form] = Form.useForm();
 
