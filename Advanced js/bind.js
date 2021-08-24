@@ -36,6 +36,11 @@ const teacher2 = {
 	},
 };
 
+
+//vd1
 const btn = document.querySelector("button");
 btn.onclick = teacher2.getFullName.bind(teacher2)
+
+
+
 
