@@ -25,4 +25,7 @@
     ```
     - `--inspect` to show devtool nodejs inspect when inspect (debugging), nodejs logo in devtool
     - `npm start` to run project
-
+- [Install morgan](https://www.npmjs.com/package/morgan)
+    - HTTP request logger middleware for node.js
+    - `npm i morgan --save-dev`
+    - see log in terminal vscode > easy to debug
